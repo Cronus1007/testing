@@ -4,25 +4,20 @@ const axios = require('axios')
 const fs = require('fs');
 app.use(express.json());
 
+const result = [];
 const jsonObject = {
-    name: "",
-    languages: {}
+        name: "",
+        languages: {}   
 };
 
 axios.get('https://api.github.com/orgs/creativecommons/repos').then((obj) => {
     const data = obj.data;
     for(const property in data){
-
-        axios.get(data[property].languages_url).then((obj) => {
-            jsonObject.languages = obj.data
+        // console.log("Hello World") 
+        axios.get(data[property].languages_url).then(async (obj) => {
             jsonObject.name=data[property].name
-            const ans = JSON.stringify(jsonObject)
-            fs.writeFile('./skills.json', ans,err => {
-                if(err)
-                console.log("Error writing the file", err)
-                else
-                console.log("Sucessfully wriiten the file")
-            })
+            jsonObject.languages = obj.data
+            console.log(jsonObject)
         })
     }
 
