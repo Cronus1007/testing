@@ -12,9 +12,10 @@ const jsonObject = {
 axios.get('https://api.github.com/orgs/creativecommons/repos').then((obj) => {
     const data = obj.data;
     for(const property in data){
-        jsonObject.name=data[property].name
+
         axios.get(data[property].languages_url).then((obj) => {
             jsonObject.languages = obj.data
+            jsonObject.name=data[property].name
             const ans = JSON.stringify(jsonObject)
             fs.writeFile('./skills.json', ans,err => {
                 if(err)
