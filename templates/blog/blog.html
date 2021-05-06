@@ -17,7 +17,9 @@
           <div class="col-md-5 p-3">
                 <h1>My Google Login Project</h1>
                 {% if user.is_authenticated %}
-                <p>Welcome, {{ user.username }} !</p>
+                  {% if user.username != 'lit2019058@iiitl.ac.in' %}
+                    <a href="redirect">Fill the Application Form Now.</a>
+                  {% endif %}
                 {% else %}
                 <h1>Welcome Friend, please log in</h1>
                 {% endif %}
