@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', view.admin),
-    path('accounts/profile/redirect/',view.redirect)
+    path('redirect/',view.redirect)
 ]

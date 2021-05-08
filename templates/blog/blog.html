@@ -17,8 +17,10 @@
           <div class="col-md-5 p-3">
                 <h1>My Google Login Project</h1>
                 {% if user.is_authenticated %}
-                  {% if user.username != 'lit2019058@iiitl.ac.in' %}
-                    <a href="redirect">Fill the Application Form Now.</a>
+                  {% if user.email != 'lit2019058@iiitl.ac.in' %}
+                    <a href="/redirect">{{ user.email }}<a>
+                  {% elif user.is_superuser == 'true' %}
+                    <a href="http://127.0.0.1:8000/admin">Admin Page </a>
                   {% endif %}
                 {% else %}
                 <h1>Welcome Friend, please log in</h1>
